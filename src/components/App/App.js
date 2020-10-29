@@ -11,7 +11,7 @@ class App extends Component {
     this.state = {
       numTiles: 36,
       playing: false,
-      previouseTileIndex: null,
+      previousTileIndex: null,
       tiles: [],
       toBeCleared: null,
     };
