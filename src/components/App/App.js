@@ -30,16 +30,20 @@ class App extends Component {
     this.setState((state) => {
       const tiles = state.tiles;
       const toBeCleared = state.toBeCleared;
-      let selectedTileIndex = indexOfSelected(state.tiles, id, color);
+      let selectedTileIndex = indexOfSelected(tiles, id, color);
       let previousTileIndex = state.previousTileIndex;
+
       if (toBeCleared !== null) {
         tiles[toBeCleared[0]].selected = false;
         tiles[toBeCleared[1]].selected = false;
         toBeCleared = null;
       }
       tiles[selectedTileIndex].selected = true;
+
       if (previousTileIndex !== null) {
-        let previousTile = tiles[previousTileIndex];
+        const previousTile = tiles[previousTileIndex];
+        const selectedTile = tiles[selectedTileIndex];
+
         if (previousTile.id !== selectedTile.id && previousTile.color === color) {
           selectedTile.matched = true;
           previousTile.matched = true;
