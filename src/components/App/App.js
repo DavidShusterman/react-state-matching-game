@@ -17,20 +17,11 @@ class App extends Component {
     };
   }
 
-  startGame = (numTiles) => {
-    this.setState((state) => ({
-      playing: true,
-      previousTileIndex: null,
-      toBeCleared: null,
-      tiles: createTiles(this.handleTileClicked),
-    }));
-  };
-
   handleTileClicked = (id, color) => {
     this.setState((state) => {
       const tiles = state.tiles;
-      const toBeCleared = state.toBeCleared;
-      let selectedTileIndex = indexOfSelected(tiles, id, color);
+      let toBeCleared = state.toBeCleared;
+      const selectedTileIndex = indexOfSelected(tiles, id, color);
       let previousTileIndex = state.previousTileIndex;
 
       if (toBeCleared !== null) {
@@ -38,6 +29,7 @@ class App extends Component {
         tiles[toBeCleared[1]].selected = false;
         toBeCleared = null;
       }
+
       tiles[selectedTileIndex].selected = true;
 
       if (previousTileIndex !== null) {
@@ -55,8 +47,18 @@ class App extends Component {
       } else {
         previousTileIndex = selectedTileIndex;
       }
-      return { tiles, toBeCleared, previousTileIndex };
+
+      return { toBeCleared, tiles, previousTileIndex };
     });
+  };
+
+  startGame = (numTiles) => {
+    this.setState((state) => ({
+      playing: true,
+      previousTileIndex: null,
+      toBeCleared: null,
+      tiles: createTiles(state.numTiles, this.handleTileClicked),
+    }));
   };
 
   render() {
