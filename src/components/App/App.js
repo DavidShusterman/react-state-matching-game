@@ -52,6 +52,10 @@ class App extends Component {
     });
   };
 
+  handleNumTileChange = (num) => {
+    this.setState({ numTieles: num, playing: false, tiles: [] });
+  };
+
   startGame = (numTiles) => {
     this.setState((state) => ({
       playing: true,
@@ -65,7 +69,12 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">Turbo-Matcher</header>
-        <OptionsPanel playing={this.state.playing} numTiles={this.state.numTiles} startGame={this.startGame} />
+        <OptionsPanel
+          playing={this.state.playing}
+          numTiles={this.state.numTiles}
+          startGame={this.startGame}
+          handleNumTileChange={handleNumTileChange}
+        />
         <Board tiles={this.state.tiles} numTiles={this.state.numTiles} />
       </div>
     );
