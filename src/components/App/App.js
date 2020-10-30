@@ -53,7 +53,7 @@ class App extends Component {
   };
 
   handleNumTileChange = (num) => {
-    this.setState({ numTieles: num, playing: false, tiles: [] });
+    this.setState({ numTiles: num, playing: false, tiles: [] });
   };
 
   startGame = (numTiles) => {
