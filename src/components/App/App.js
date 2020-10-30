@@ -73,7 +73,7 @@ class App extends Component {
           playing={this.state.playing}
           numTiles={this.state.numTiles}
           startGame={this.startGame}
-          handleNumTileChange={handleNumTileChange}
+          handleNumTileChange={this.handleNumTileChange}
         />
         <Board tiles={this.state.tiles} numTiles={this.state.numTiles} />
       </div>
